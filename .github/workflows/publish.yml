@@ -94,6 +94,8 @@ jobs:
           git config user.name eygraber
           git config user.email eygraber@users.noreply.github.com
           sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' gradle.properties
+          sed -i -e 's/gradleUtils = .*/gradleUtils = ${{ env.NEXT_RELEASE_VERSION }}/g' gradle/libs.versions.toml
           git add gradle.properties
+          git add gradle/libs.versions.toml
           git commit -m "Prepare next dev version (${{ env.NEXT_VERSION }})"
           git push origin master
